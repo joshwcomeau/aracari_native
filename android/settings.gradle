@@ -1,0 +1,3 @@
+rootProject.name = 'aracarinative'
+
+include ':app'
