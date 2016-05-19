@@ -7,6 +7,9 @@ import {
   View
 } from 'react-native';
 
+import NewBudgetItem from '../NewBudgetItem';
+
+
 class BudgetView extends Component {
   constructor(...args) {
     super(...args);
@@ -14,7 +17,10 @@ class BudgetView extends Component {
   }
 
   addNewBudgetItem() {
-    this.props.navigator.push({ name: 'NewBudgetItem' })
+    this.props.navigator.push({
+      title: 'Add New Item',
+      component: NewBudgetItem,
+    });
   }
 
   render() {
@@ -32,9 +38,10 @@ class BudgetView extends Component {
 const styles = StyleSheet.create({
   budgetView: {
     flex: 1,
+    marginTop: 64,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#006600',
   },
 });
 
