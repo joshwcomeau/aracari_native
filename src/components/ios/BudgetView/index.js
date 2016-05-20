@@ -6,8 +6,15 @@ import {
   Text,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
+import { progressThroughMonth } from '../../../utils/time.utils';
+
+import { navigatorHeight } from '../../../styles/sizes';
+import { offwhite } from '../../../styles/colours';
 import NewBudgetItem from '../NewBudgetItem';
+import BudgetCategory from '../BudgetCategory';
 
 
 class BudgetView extends Component {
@@ -23,13 +30,21 @@ class BudgetView extends Component {
     });
   }
 
+  renderBudgetCategories() {
+    console.log(this.props)
+    return this.props.categories.map( category => (
+      <BudgetCategory
+        key={category.slug}
+        monthProgress={progressThroughMonth()}
+        {...category}
+      />
+    ))
+  }
+
   render() {
     return (
       <View style={styles.budgetView}>
-        <Text>Budget View</Text>
-        <TouchableHighlight onPress={this.addNewBudgetItem}>
-          <Text>Add New Budget Item</Text>
-        </TouchableHighlight>
+        {this.renderBudgetCategories()}
       </View>
     )
   }
@@ -38,11 +53,22 @@ class BudgetView extends Component {
 const styles = StyleSheet.create({
   budgetView: {
     flex: 1,
-    marginTop: 64,
-    justifyContent: 'center',
+    marginTop: navigatorHeight,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#006600',
+    backgroundColor: offwhite,
   },
 });
 
-export default BudgetView;
+function mapStateToProps(state) {
+  // NOTE: This is generally a bad practice!!
+  // When using Immutable.js, it's generally a good idea, for perf reasons,
+  // to keep the data structure immutable all the way down through components.
+  // I really like rest/spread operators, though, and this is a tiny toy app,
+  // so I don't anticipate perf concerns with such small amounts of state.
+  // Don't do this in real apps though!
+  const budget = state.get('budget').toJS();
+  return { ...budget };
+}
+
+export default connect(mapStateToProps)(BudgetView);

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Map, List, fromJS } from 'immutable';
 
-import budgetReducer from 'ducks/budget.duck';
+import budgetReducer from '../ducks/budget.duck';
 
 
 const rootReducer = (state = Map(), action) => {
