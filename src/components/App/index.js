@@ -18,14 +18,16 @@ const {
 } = NavigationExperimental
 
 class App extends Component {
-  renderHeader(props) {
+  renderNavigationHeader(props) {
     return (
       <NavigationHeader
+        style={styles.navigationTitle}
         {...props}
-        renderTitleComponent={props => {
-          const title = props.scene.navigationState.title;
-          return <NavigationHeader.Title>{title}</NavigationHeader.Title>
-        }}
+        renderTitleComponent={props => (
+          <NavigationHeader.Title>
+            {props.scene.navigationState.title}
+          </NavigationHeader.Title>
+        )}
       />
     );
   }
@@ -48,7 +50,7 @@ class App extends Component {
         style={{ flex: 1 }}
         navigationState={navigationState}
         onNavigate={onNavigate}
-        renderOverlay={this.renderHeader}
+        renderOverlay={this.renderNavigationHeader}
         renderScene={props => (
           <NavigationCard
             {...props}
@@ -60,6 +62,13 @@ class App extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  navigationTitle: {
+    backgroundColor: '#FFFFFF',
+  },
+});
+
 
 const mapStateToProps = state => ({
   navigationState: state.get('navigation').toJS()

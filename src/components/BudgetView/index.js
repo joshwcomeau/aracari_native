@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { progressThroughMonth } from '../../utils/time.utils';
-
 import { navigatorHeight } from '../../styles/sizes';
 import { offwhite } from '../../styles/colours';
+
 import NewBudgetItem from '../NewBudgetItem';
 import BudgetCategory from '../BudgetCategory';
 
@@ -31,7 +31,6 @@ class BudgetView extends Component {
   }
 
   renderBudgetCategories() {
-    console.log(this.props)
     return this.props.categories.map( category => (
       <BudgetCategory
         key={category.slug}
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
+  // Convert the state into plain JS, picking from the selectors.
   // NOTE: This is generally a bad practice!!
   // When using Immutable.js, it's generally a good idea, for perf reasons,
   // to keep the data structure immutable all the way down through components.
@@ -68,7 +68,9 @@ function mapStateToProps(state) {
   // so I don't anticipate perf concerns with such small amounts of state.
   // Don't do this in real apps though!
   const budget = state.get('budget').toJS();
-  return { ...budget };
+  return {
+    ...budget
+  };
 }
 
 export default connect(mapStateToProps)(BudgetView);

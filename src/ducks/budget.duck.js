@@ -17,18 +17,27 @@ const initialState = fromJS({
     {
       name: 'Food',
       slug: 'food',
-      budget: 50000,
-      amountSpent: 15000,
+      funds: 50000,
+      items: [
+        { details: 'Hamburger', value: 1000 },
+        { details: 'Indian Food', value: 4500 },
+        { details: 'Groceries', value: 9000 },
+      ],
     }, {
       name: 'Entertainment',
       slug: 'entertainment',
-      budget: 20000,
-      amountSpent: 20000,
+      funds: 20000,
+      items: [
+        { details: 'Movies', value: 3000 },
+        { details: 'Video Game', value: 14000 },
+      ],
     }, {
       name: 'Medication',
       slug: 'medication',
-      budget: 15000,
-      amountSpent: 3500,
+      funds: 15000,
+      items: [
+        { details: 'Pills', value: 1000 },
+      ],
     },
   ],
 });

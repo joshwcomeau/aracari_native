@@ -21,18 +21,20 @@ import { getBudgetColour, formatHSLColourForCSS } from '../../utils/colour.utils
 class BudgetCategory extends Component {
   render() {
     const {
-      name, slug, budget, amountSpent, monthProgress, actions,
+      name, slug, funds, items, monthProgress, actions,
     } = this.props;
 
-    const budgetRatio = amountSpent / budget;
-    const budgetPercentage = budgetRatio * 100;
+    const spent = items.reduce((memo, item) => memo + item.value, 0);
+    const available = funds - spent;
+
+    const budgetRatio = spent / funds;
     const budgetColour = formatHSLColourForCSS(getBudgetColour(budgetRatio, monthProgress));
 
     return (
       <View style={styles.budgetCategory}>
         <View style={styles.budgetBarContainer}>
-          <View style={[styles.budgetBar, { flex: budgetPercentage, backgroundColor: budgetColour }]} />
-          <View style={[styles.budgetSpacer, { flex: 100 - budgetPercentage }]} />
+          <View style={[styles.budgetBar, { flex: spent, backgroundColor: budgetColour }]} />
+          <View style={[styles.budgetSpacer, { flex: available }]} />
         </View>
         <Text style={styles.budgetLabel}>{name}</Text>
       </View>
