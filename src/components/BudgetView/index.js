@@ -9,10 +9,10 @@ import {
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { progressThroughMonth } from '../../../utils/time.utils';
+import { progressThroughMonth } from '../../utils/time.utils';
 
-import { navigatorHeight } from '../../../styles/sizes';
-import { offwhite } from '../../../styles/colours';
+import { navigatorHeight } from '../../styles/sizes';
+import { offwhite } from '../../styles/colours';
 import NewBudgetItem from '../NewBudgetItem';
 import BudgetCategory from '../BudgetCategory';
 

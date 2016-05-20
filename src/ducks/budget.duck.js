@@ -5,8 +5,8 @@ import slug from 'slug';
 // ////////////////////////
 // ACTION TYPES //////////
 // //////////////////////
-export const ADD_CATEGORY = 'LOAD_TRACKS';
-export const ADD_COST = 'SELECT_ARTIST_FOR_TRACKS';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const ADD_COST = 'ADD_COST';
 
 
 // ////////////////////////

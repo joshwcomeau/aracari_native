@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import { getBudgetColour, formatHSLColourForCSS } from '../../../utils/colour.utils';
+import { getBudgetColour, formatHSLColourForCSS } from '../../utils/colour.utils';
 
 // const BudgetCategory = ({
 //
